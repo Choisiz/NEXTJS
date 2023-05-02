@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 
 export default function CategorySlug() {
   const router = useRouter();
-  console.log("r", router);
-  const { slug, from } = router.query;
+  //url에 입력한 값을 받아옴
+  const { slug, from,age } = router.query;
   return (
     <>
       <h1 className="title">
-        category {slug} from {from}
+        category {slug} from {from} age {age}
       </h1>
     </>
   );
