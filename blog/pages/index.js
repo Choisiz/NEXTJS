@@ -1,6 +1,7 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import Link from "next/link";
+import Image from "next/image";
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -10,6 +11,14 @@ export default function Home() {
       </Head>
 
       <main>
+        {/*<img src="/images/kcw2.jpg" alt="김채원" />*/}
+        <h1 className={styles.title}>
+          Link태그 <Link href="/posts/first-post">First Post</Link>
+        </h1>
+
+        <h1 className={styles.title}>
+          a태그 <a href="/posts/first-post"> First post</a>
+        </h1>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
@@ -48,14 +57,18 @@ export default function Home() {
           </a>
         </div>
       </main>
+      <h1 className={styles.title}>
+        second page <Link href="/posts/second-post">Second Post</Link>
+      </h1>
 
+      <Image src="/images/kcw2.jpg" alt="김채원" width={200} height={250} />
       <footer>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
         </a>
       </footer>
@@ -111,5 +124,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
