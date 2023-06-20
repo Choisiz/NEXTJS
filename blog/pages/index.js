@@ -1,8 +1,10 @@
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
+import Layout, { siteTitle } from "../components/Layout";
 import utilStyles from "../styles/utils.module.css";
 //import { getSortedPostsData } from "../lib/post";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import Date from "../components/Date";
 
 //SSG
 //export async function getStaticProps() {
@@ -14,7 +16,7 @@ import { useEffect, useState } from "react";
 //  };
 //}
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const response = await fetch("http://localhost:3000//api/posts");
   const json = await response.json();
   return {
@@ -52,11 +54,11 @@ export default function Home({ allPostsData }) {
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              {title}
+              <Link href={`/posts/${id}`}>{title}</Link>
               <br />
-              {id}
-              <br />
-              {date}
+              <small className={utilStyles.lightText}>
+                <Date dateString={date} />
+              </small>
             </li>
           ))}
         </ul>
