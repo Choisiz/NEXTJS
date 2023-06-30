@@ -1,30 +1,30 @@
 import Head from "next/head";
 import Layout, { siteTitle } from "../components/Layout";
 import utilStyles from "../styles/utils.module.css";
-//import { getSortedPostsData } from "../lib/post";
+import { getSortedPostsData } from "../lib/posts";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Date from "../components/Date";
 
 //SSG
-//export async function getStaticProps() {
-//  const allPostsData = getSortedPostsData();
-//  return {
-//    props: {
-//      allPostsData,
-//    },
-//  };
-//}
-
-export async function getServerSideProps() {
-  const response = await fetch("http://localhost:3000//api/posts");
-  const json = await response.json();
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData();
   return {
     props: {
-      allPostsData: json.allPostsData,
+      allPostsData,
     },
   };
 }
+
+//서버사이드에서는 api라우터 사용x
+//export async function getServerSideProps() {
+//  const response = await fetch("http://localhost:3000//api/posts");
+//  const json = await response.json();
+//  return {
+//    props: {
+//      allPostsData: json.allPostsData,
+//    },
+//  };
+//}
 
 export default function Home({ allPostsData }) {
   //csr
@@ -56,9 +56,7 @@ export default function Home({ allPostsData }) {
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>{title}</Link>
               <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
+              <small className={utilStyles.lightText}></small>
             </li>
           ))}
         </ul>
