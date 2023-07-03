@@ -1,11 +1,10 @@
 import Head from "next/head";
 import Layout from "../../components/Layout";
-import { getAllPostIds, getPostData } from "../../lib/posts";
+import { getPostData } from "../../lib/posts";
 import utilStyles from "../../styles/utils.module.css";
 import { useRouter } from "next/router";
 
 export async function getStaticPaths() {
-  //const paths = getAllPostIds();
   const paths = [
     {
       params: {
@@ -13,7 +12,6 @@ export async function getStaticPaths() {
       },
     },
   ];
-
   return {
     paths,
     fallback: true,
