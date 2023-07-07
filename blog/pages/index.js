@@ -44,7 +44,6 @@ export default function Home({ allPostsData }) {
         <p>[Your Self Introduction]</p>
         <p>
           (This iss a sample website - you’ll be building a site like this on{" "}
-          <a href="/posts/first-post">first post page</a>.)
         </p>
       </section>
 

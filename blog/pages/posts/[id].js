@@ -3,7 +3,8 @@ import Layout from "../../components/Layout";
 import { getPostData } from "../../lib/posts";
 import utilStyles from "../../styles/utils.module.css";
 import { useRouter } from "next/router";
-
+import { MDXRemote } from "next-mdx-remote";
+import CodeBlock from "../../components/CodeBlock";
 export async function getStaticPaths() {
   const paths = [
     {
@@ -27,6 +28,18 @@ export async function getStaticProps({ params }) {
   };
 }
 
+const Button = ({ children }) => {
+  return (
+    <button
+      className="bg-black dark:bg-white text-lo text-teal-200 dark:text-teal-700 rounded-lg px-5"
+      onClick={() => alert("thank you")}
+    >
+      {children}
+    </button>
+  );
+};
+const components = { Button, CodeBlock };
+
 export default function Post({ postData }) {
   const router = useRouter();
   if (router.isFallback) {
@@ -40,7 +53,12 @@ export default function Post({ postData }) {
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div className={utilStyles.lightText}></div>
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        {postData.contentHtml && (
+          <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        )}
+        {postData.mdxSource && (
+          <MDXRemote {...postData.mdxSource} components={components} />
+        )}
       </article>
     </Layout>
   );
