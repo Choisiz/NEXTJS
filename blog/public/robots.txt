@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://nextjs-blog-gamma-six-65.vercel.app
+
+# Sitemaps
+Sitemap: https://nextjs-blog-gamma-six-65.vercel.app/sitemap.xml
