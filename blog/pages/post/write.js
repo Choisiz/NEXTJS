@@ -1,7 +1,19 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Layout from "../../components/Layout";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
+//export async function getServerSideProps() {
+//  return {};
+//}
+
 export default function Write() {
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log("router", router.query);
+  }, [router.query]);
+
   const [showLink, setShowLink] = useState(false);
   const idRef = useRef(undefined);
   const titleRef = useRef(undefined);
