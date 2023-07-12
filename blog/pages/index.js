@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/Layout";
+import { siteTitle } from "../pages/_document";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
@@ -14,29 +14,9 @@ export async function getStaticProps() {
   };
 }
 
-//서버사이드에서는 api라우터 사용x
-//export async function getServerSideProps() {
-//  const response = await fetch("http://localhost:3000//api/posts");
-//  const json = await response.json();
-//  return {
-//    props: {
-//      allPostsData: json.allPostsData,
-//    },
-//  };
-//}
-
 export default function Home({ allPostsData }) {
-  //csr
-  //const [allPostsData, setAllPostsData] = useState([]);
-  //useEffect(() => {
-  //  fetch("/api/posts", {
-  //    method: "GET",
-  //  })
-  //    .then((res) => res.json())
-  //   .then((data) => setAllPostsData(data.allPostsData));
-  //}, []);
   return (
-    <Layout home>
+    <>
       <Head>
         <title>{siteTitle}</title>
       </Head>
@@ -59,6 +39,6 @@ export default function Home({ allPostsData }) {
           ))}
         </ul>
       </section>
-    </Layout>
+    </>
   );
 }

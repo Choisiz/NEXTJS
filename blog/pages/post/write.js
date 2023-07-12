@@ -1,11 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import Layout from "../../components/Layout";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
-//export async function getServerSideProps() {
-//  return {};
-//}
+import Head from "next/head";
 
 export default function Write() {
   const router = useRouter();
@@ -49,7 +45,10 @@ export default function Write() {
     }
   };
   return (
-    <Layout>
+    <>
+      <Head>
+        <title>Write Post</title>
+      </Head>
       <h1>Write Post</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" name="id" placeholder="id" required ref={idRef} />
@@ -72,9 +71,9 @@ export default function Write() {
         <br />
         <textarea />
         <br />
-        <input type="submit" value="생성" />
+        <input className="rounded bg-green-600" type="submit" value="생성" />
       </form>
       {showLink && <Link href={`/posts/${idRef.current.value}`}>클릭</Link>}
-    </Layout>
+    </>
   );
 }
